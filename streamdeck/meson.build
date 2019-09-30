@@ -1,0 +1,7 @@
+project('streamdeck', 'c', default_options : ['c_std=c11'])
+shmif = dependency('arcan-shmif')
+thread = dependency('threads')
+hidapi = dependency('hidapi-libusb')
+cc = meson.get_compiler('c')
+math = cc.find_library('m', required : false)
+executable('arcan-streamdeck', ['src/streamdeck.c'], install : true, dependencies : [shmif, math, thread, hidapi])
